@@ -45,7 +45,7 @@ modelLin <- rxLinMod(varY ~ varx1 + varx2 + F(varFact1), data = Data.DS,
 					cube = TRUE, blocksPerRead = 30)
 
 
-# fonction qui Estime apres le modele
+# fonction qui Estime d'apres le modele
 expectedOutput <- function (var1, var2, var3){
 	coeffNames <- c(as.character(var1),as.character(var2),as.character(var3))
 	return(sum(modelCoef[coeffNames]))
