@@ -33,7 +33,24 @@ str(weather)
 #---------------------------------
 # 5 - Visualisation d'une seule variable 
 #---------------------------------
-ds <- summary(weather$RainTomorrow) #resume de la variable
+
+# Filtrer une variable 
+	# Facteur
+	iris[iris[,"Species"]=="setosa",] # Selectionne tous les enregistrements avec Species = setosa
+	#ou : - iris[iris$Species=="setosa", ] ou -  subset(iris, Species == "setosa")
+	# Continue 
+	subset(iris, Petal.Width < 3 & Petal.Width >= 2) # valeur entre 2 et 3
+	# Mixte 
+	iris[ which(iris$Petal.Width < 3 & iris$Species == "setosa") , ]
+
+
+# Le Tri 
+attach(iris) #Rend les variables reconnues pas la peine de faire iris$...
+newiris <- iris[order(Sepal.Width),]
+
+
+#resume d'une variable
+ds <- summary(weather$RainTomorrow) 
 # ploter en barplot
 bp <- barplot2(ds,beside=TRUE,xlab="Rain Tomorrow",ylab="Frequence",ylim=c(0,max(ds)+15),col="blue") # xlab ="mettre le label"
 

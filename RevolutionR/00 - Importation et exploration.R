@@ -38,3 +38,23 @@ mortDataSet <- RxXdfData(mortXdfFileName)
 
 rxSummary(~., data=mortDataSet, blocksPerRead = 2) # separation de traitement
 
+
+
+# Filtrer une variable 
+	# Facteur
+	iris[iris[,"Species"]=="setosa",] # Selectionne tous les enregistrements avec Species = setosa
+	#ou : - iris[iris$Species=="setosa", ] ou -  subset(iris, Species == "setosa")
+	# Continue 
+	subset(iris, Petal.Width < 3 & Petal.Width >= 2) # valeur entre 2 et 3
+	# Mixte 
+	iris[ which(iris$Petal.Width < 3 & iris$Species == "setosa") , ]
+
+
+# Le Tri 
+
+sortByVars <- c("Sepal.Length", "Sepal.Width")
+decreasing <- c(TRUE, FALSE) # length decreasing and width increasing
+rxSort(inData = inXDF, outFile = outXDF1, sortByVars = sortByVars,
+   decreasing = decreasing) # supporte le blocksPerRead
+z1 <- rxReadXdf(outXDF1)
+print(head(z1,10))
