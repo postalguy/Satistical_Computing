@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(shinythemes)\nshinyUI(\n  \n  navbarPage(\"Outils R\",\n              tabPanel(\"Upload\",\n                       # Upload UI :\n                       fluidPage(theme = shinytheme(\"spacelab\"),\n                                 titlePanel(\"Charger un fichier\"),\n                                 sidebarLayout(\n                                   #Side panel content\n                                   sidebarPanel(\n                                     fileInput(\"file\",\"Upload the file\", accept = c(\n                                       'text/csv',\n                                       'text/comma-separated-values',\n                                       'text/tab-separated-values',\n                                       'text/plain',\n                                       '.csv',\n                                       '.tsv'\n                                     )), \n                                     helpText(\"Default max. file size is 1Go\"),\n                                     tags$hr(),\n                                     h5(helpText(\"Paramètres\")),\n                                     checkboxInput(inputId = 'header', label = 'en-tete', value = TRUE),\n                                     checkboxInput(inputId = \"stringAsFactors\", \"stringAsFactors (accélère l'upload)\", TRUE),\n                                     \n                                     br(),\n                                     radioButtons(inputId = 'sep', label = 'Séparateur', choices = c(Comma=',',Semicolon=';',Tab='\\t', Space=''), selected = ','),\n                                     radioButtons('quote', 'Citation',\n                                                  c(None='',\n                                                    '\\\"'='\"',\n                                                    '\\''=\"'\"),\n                                                  '\"')),\n                                   mainPanel(\n                                     uiOutput(\"tb\")\n                                   )\n                                   \n                                 )\n                       )\n                       \n                       \n                       ),\n              tabPanel(\"Plots\",\n                       # Plot UI :\n                       fluidPage(theme = shinytheme(\"spacelab\"),\n                                 titlePanel(\"Voir les graphes\"),\n                                 sidebarLayout(\n                                   #Side panel content\n                                   uiOutput(\"plotselection\"),\n                                   mainPanel(\n                                    plotOutput(\"plotout\")\n                                   )\n                                   \n                                 )\n                       )\n                       ),\n              tabPanel(\"Prediction\")\n  ))",
+    "created" : 1456845473387.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1567302903",
+    "id" : "ED06B266",
+    "lastKnownWriteTime" : 1456825925,
+    "last_content_update" : 1456825925,
+    "path" : "~/R Application/FirstApp/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
