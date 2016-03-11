@@ -1,0 +1,6 @@
+Solutions possibles pour intégrer R à Meditel (RRE et R open S):
+
+- Utiliser R sous console (Documentation et abstraction basse)
+- Shiny APP (créer une application intéractive en javascript et html qui tourne sous R)
+- Knime avec une intégration de R et développement de nodes propres à meditel 
+
