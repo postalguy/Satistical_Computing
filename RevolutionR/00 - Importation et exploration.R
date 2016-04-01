@@ -4,13 +4,17 @@
 
 
 # 1 - Preparation de l'espace de travail 
-data.dir <- "C/Users/Fsociety/Bigdatasamples"
-file.Input <- file.path(data.dir,"Nom_du_fichier.csv")
+setwd("C:/Users/Fsociety/Bigdatasamples")
+data.dir <- "C:/Users/Fsociety/Bigdatasamples"
+file.Input <- file.path(data.dir,"mortDefault2000.csv")
 
 # 2 - Passage du csv => xdf (RxXdfObject)
-Data.DS <- RxXdfData(file.Input) 
+Data.DS <- rxImport(inData = file.Input, outFile = "mortData2000.xdf",stringsAsFactors = TRUE,overwrite = TRUE,maxRowsByCols = NULL)
   # Summary of the active data
-  rxGetInfo(Data.DS, getVarInfo = TRUE) # getVarInfo est pour chaque variable (colonne)
+rxGetInfo(Data.DS, getVarInfo = TRUE) # getVarInfo est pour chaque variable (colonne)
+dataFromDS <- rxXdfToDataFrame(Data.DS) # From rxXdfData to a data.frame
+
+
 
 # 3 - Lecture d'une partie des enregistrements 
   # varsToKeep : les colonnes a prendre 
@@ -30,13 +34,23 @@ rxSummary (Data.Sample)
 #			mortDefault2001.csv
 #			...........2009.csv
 #########################################
+setwd("C:/Users/Fsociety/Bigdatasamples")
 Data.Directory <- "C:/Users/Fsociety/Bigdatasamples"
 Data.File <- file.path(Data.Directory,"mortDefault")
 mortXdfFileName <- "mortDefault.xdf"
 
-mortDataSet <- RxXdfData(mortXdfFileName)
+append <- "none"
+for(i in 2000:2009){
+	importFile <- paste(Data.File,i,".csv",sep="")
+	mortxdf <- rxImport(importFile,mortXdfFileName,append=append, overwrite = TRUE, maxRowsByCols = NULL)
+	append <- "rows"	
+}
+mortxdfData <- RxXdfData(mortXdfFileName)
+mortDataframe <- rxXdfToDataFrame(mortxdfData, maxRowsByCols = NULL)
 
-rxSummary(~., data=mortDataSet, blocksPerRead = 2) # separation de traitement
+# Filtrer transformer : 
+
+myDataSubset <- rxDataStep(inData = myData,varsToKeep = c("x", "w", "z"), rowSelection = z>0)
 
 
 
@@ -58,3 +72,7 @@ rxSort(inData = inXDF, outFile = outXDF1, sortByVars = sortByVars,
    decreasing = decreasing) # supporte le blocksPerRead
 z1 <- rxReadXdf(outXDF1)
 print(head(z1,10))
+
+# Jointures : 
+rxMerge(inData1 = acctDF, inData2 = procedureDF, type = "inner",
+        matchVars=c("acct", "patient"))

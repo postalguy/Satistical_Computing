@@ -1,0 +1,2 @@
+# Un modele predictif de migration prepaye -> post || hani 
+# Prediction de qualite d'engagemet apres migration (Mauvaise, Moyenne, Bonne)
