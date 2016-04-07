@@ -53,7 +53,8 @@ mortDataframe <- rxXdfToDataFrame(mortxdfData, maxRowsByCols = NULL)
 
 myDataSubset <- rxDataStep(inData = myData,varsToKeep = c("x", "w", "z"), rowSelection = z>0)
 
-
+# Supprimer une ligne 
+df <- df[-c(7,8),] #Ligne 7 et 8 supprimes
 
 # Filtrer une variable 
 	# Facteur
