@@ -12,7 +12,8 @@ weather <- read.csv(file)
 # 2 - Substitution de quelques colonnes 
 #----------------------------
 weather <- weather[,-c(1,2)] #1ere et 2eme colonnes supprimees
-
+# Supprimer une ligne 
+df <- df[-c(7,8),] #Ligne 7 et 8 supprimes
 
 #-------------------------------
 # 3 - Avoir un compte rendu de toutes les variables
@@ -27,8 +28,8 @@ describe(weather)
 # 4 - Savoir la structure des données 
 #------------------------------
 str(weather)
-
-
+#Changer l'ordre des vriables dans la dataframe 
+df <- df[,c(6,1,2,3,4,5)]
 
 #---------------------------------
 # 5 - Visualisation d'une seule variable 

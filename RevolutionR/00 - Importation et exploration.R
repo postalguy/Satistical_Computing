@@ -46,6 +46,7 @@ for(i in 2000:2009){
 	append <- "rows"	
 }
 mortxdfData <- RxXdfData(mortXdfFileName)
+# Si on aura besoin de traiter les données en data.frame type :
 mortDataframe <- rxXdfToDataFrame(mortxdfData, maxRowsByCols = NULL)
 
 # Filtrer transformer : 

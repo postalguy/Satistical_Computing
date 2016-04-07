@@ -19,3 +19,22 @@ xform <- function(datalist){
 	datalist$Sport <- factor(datalist$Sport, levels= sort(levels(datalist$Sport)))
 	datalist
 }	
+
+
+# Creer une variable sous une condition 
+# pour avoir 
+#x   y  w
+#1   1  "good"
+#2   2   "fair"
+#5   5   "bad"
+x <- c(1, 2, 4)
+y <- c(1, 4, 5)
+w <- ifelse(x <= 1, "good", ifelse((x >= 3) & (x <= 5), "bad", "fair"))
+data.frame(x, y, w)
+
+
+
+# Stratisfaction de données : 
+library(splitstackshape)
+set.seed(1)
+out <- stratified(iris, c("Species"), 30) # 30 enregistrement de chaque espèce 
