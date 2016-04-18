@@ -14,12 +14,15 @@ set.seed(1234)
  # Prediction 
   rxPredict(RevoTree , data = trainData)
 
+  # ploting
+  prp(rxAddInheritance(RevoTree))
+  fancyRpartPlot(rxAddInheritance(RevoTree))
 
   ########### Travail sur des donnes larges #################
 # maxDepth :
 	#cela definit la profondeur maximale de n'importe quel nœud de l'arbre. 
 	#Le calcule s'agrandit rapidement des que la profondeur augmente,
-	#un maxDepth de 10 à 15 est pas mal.
+	#un maxDepth de 10 � 15 est pas mal.
 # cp : 
 	#ceci est un parametre de complexite et met la barre pour combien une split doit reduire la la complexite avant d'etre accepte.
 	#Si vous souhaitez specifier une valeur de cp, commencer par une valeur prudente,
