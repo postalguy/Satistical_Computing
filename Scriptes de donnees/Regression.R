@@ -6,6 +6,7 @@ View(Migrated_Model_DATA)
 Migrated_Model_DATA$PLAN_SOURCE <- as.factor(Migrated_Model_DATA$PLAN_SOURCE)
 Migrated_Model_DATA$PLAN_CIBLE <- as.factor(Migrated_Model_DATA$PLAN_CIBLE)
 Migrated_Model_DATA$LIGNE <- nombreToLigne(Migrated_Model_DATA$LIGNE)
+Migrated_Model_DATA <- Migrated_Model_DATA[complete.cases(Migrated_Model_DATA),]
 View(Migrated_Model_DATA)
 #############################################################################################"
 #regression binomiale de chaque categorie : 

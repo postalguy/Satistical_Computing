@@ -7,16 +7,7 @@ View(Migrated_Model_DATA)
 Migrated_Model_DATA$PLAN_SOURCE <- as.factor(Migrated_Model_DATA$PLAN_SOURCE)
 Migrated_Model_DATA$PLAN_CIBLE <- as.factor(Migrated_Model_DATA$PLAN_CIBLE)
 Migrated_Model_DATA$LIGNE <- nombreToLigne(Migrated_Model_DATA$LIGNE)
-attach(Migrated_Model_DATA)
-Migrated_Model_DATA <- Migrated_Model_DATA[(!is.na(ANCIENETE)) ||  
-                                             !is.na(PLAN_CIBLE) ||
-                                             !is.na(MMPR) || 
-                                             !is.na(AVG_APPELANTS) ||
-                                             !is.na(AVG_APPELES) ||
-                                             !is.na(AVG_DATA_Go) ||
-                                             !is.na(AVG_OB_BASE) ||
-                                             !is.na(AVG_OB_INT),]
-detach(Migrated_Model_DATA)
+Migrated_Model_DATA <- Migrated_Model_DATA[complete.cases(Migrated_Model_DATA),]
 View(Migrated_Model_DATA)
 
 
