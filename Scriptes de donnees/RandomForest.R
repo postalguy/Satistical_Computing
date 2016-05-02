@@ -15,7 +15,7 @@ View(Migrated_Model_DATA)
 
 
 set.seed(1)
-Donnees_Stra<- stratified(Migrated_Model_DATA, c("PLAN_CIBLE_CATEGO"),3000))
+Donnees_Stra<- stratified(Migrated_Model_DATA, c("PLAN_CIBLE_CATEGO"),3000)
 ind <- sample(2, nrow(Donnees_Stra), replace=TRUE, prob=c(0.7, 0.3))
 trainData <- Donnees_Stra[ind==1,]
 testData <- Donnees_Stra[ind==2,]
