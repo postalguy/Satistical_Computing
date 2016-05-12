@@ -14,7 +14,7 @@
 lct <- Sys.getlocale("LC_TIME"); Sys.setlocale("LC_TIME", "C") 
 importDMRT_MMXX <- function(filefulln){
   
-  file_path <- paste("C:/Users/User/Desktop/donnee/",filefulln,sep="")
+  file_path <- paste(as.character(paste(getwd(),'/',sep = "")),filefulln,sep="")
   filen <- read.csv(file_path, sep=";", na.strings=".")
   
   # rendre le code de l'offre comme facteur 

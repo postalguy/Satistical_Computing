@@ -7,7 +7,6 @@ library(party)
 #########################################################################################
 # Chargement 
 Migrated_Model_DATA <- read.csv("C:/Users/User/Desktop/donnee/Migrated_Model_DATA.txt", sep=";", na.strings=".")
-View(Migrated_Model_DATA)
 Migrated_Model_DATA$PLAN_SOURCE <- as.factor(Migrated_Model_DATA$PLAN_SOURCE)
 Migrated_Model_DATA$PLAN_CIBLE <- as.factor(Migrated_Model_DATA$PLAN_CIBLE)
 Migrated_Model_DATA$LIGNE <- nombreToLigne(Migrated_Model_DATA$LIGNE)
@@ -33,7 +32,7 @@ Arbre_rpart <- rpart(target, data=Migrated_Model_DATA,method = "class", control 
 fancyRpartPlot(Arbre_rpart)
 
 ###########################################################################################
-# 2 - modele : party 
+# 2 - modele : party  # ISSUE 01
   Arbre_party <- ctree(target,Migrated_Model_DATA, controls = ctree_control(maxdepth = 10))
 plot(Arbre_party, type="simple")
 
