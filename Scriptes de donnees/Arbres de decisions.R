@@ -33,11 +33,11 @@ target <- PLAN_CIBLE_CATEGO ~ ANCIENETE + MMPR + AVG_OB_INT + AVG_OB_BASE + AVG_
 
 ###########################################################################################
 # 1 - modèle 1 : Rpart 
-Arbre_rpart <- rpart(target, data=trainData,method = "class", control = rpart.control(maxdepth = 20,cp = 0.004),parms = list(split = 'information'))
+Arbre_rpart <- rpart(target, data=trainData,method = "class", control = rpart.control(maxdepth = 20,cp = 0.006),parms = list(split = 'information'))
 fancyRpartPlot(Arbre_rpart)
 
 ###########################################################################################
-# 2 - modele : party  # ISSUE 01
+# 2 - modele : party  
   Arbre_party <- ctree(target,trainData, controls = ctree_control(maxdepth = 10))
 plot(Arbre_party, type="simple")
 
@@ -45,3 +45,12 @@ plot(Arbre_party, type="simple")
 # 3 - modele : rxDtree
 Arbre <- rxDTree(PLAN_CIBLE_CATEGO ~ ANCIENETE + MMPR + AVG_OB_INT + AVG_OB_BASE + AVG_DATA_Go + AVG_APPELANTS + AVG_APPELES + AVG_PASSE1_MENS,data = trainData, maxDepth = 10,cp = 0.004 )
 fancyRpartPlot(rxAddInheritance(Arbre))
+
+
+######################## 
+#PRUNING TREES 
+# Rpart 
+
+# Party
+
+# rxDtree
