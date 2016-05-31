@@ -49,6 +49,10 @@ fancyRpartPlot(rxAddInheritance(Arbre))
 
 ######################## 
 #PRUNING TREES 
+#Valoriser l'erreur / taille de l'arbre 
+plotcp(Arbre_rpart)
+plotcp(Arbre_party)
+plotcp(rxAddInheritance(Arbre))
 # Rpart 
 
 # Party
