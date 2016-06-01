@@ -33,17 +33,17 @@ target <- PLAN_CIBLE_CATEGO ~ ANCIENETE + MMPR + AVG_OB_INT + AVG_OB_BASE + AVG_
 
 ###########################################################################################
 # 1 - modèle 1 : Rpart 
-Arbre_rpart <- rpart(target, data=trainData,method = "class", control = rpart.control(maxdepth = 20,cp = 0.006),parms = list(split = 'information'))
+Arbre_rpart <- rpart(target, data=trainData,method = "class", control = rpart.control(maxdepth = 20,cp = 0.005),parms = list(split = 'information'))
 fancyRpartPlot(Arbre_rpart)
 
 ###########################################################################################
 # 2 - modele : party  
-  Arbre_party <- ctree(target,trainData, controls = ctree_control(maxdepth = 10))
+  Arbre_party <- ctree(target,trainData, controls = ctree_control(maxdepth = 10,))
 plot(Arbre_party, type="simple")
 
 ###########################################################################################
 # 3 - modele : rxDtree
-Arbre <- rxDTree(PLAN_CIBLE_CATEGO ~ ANCIENETE + MMPR + AVG_OB_INT + AVG_OB_BASE + AVG_DATA_Go + AVG_APPELANTS + AVG_APPELES + AVG_PASSE1_MENS,data = trainData, maxDepth = 10,cp = 0.004 )
+Arbre <- rxDTree(PLAN_CIBLE_CATEGO ~ ANCIENETE + MMPR + AVG_OB_INT + AVG_OB_BASE + AVG_DATA_Go + AVG_APPELANTS + AVG_APPELES + AVG_PASSE1_MENS,data = trainData, maxDepth = 10,cp = 0.05 )
 fancyRpartPlot(rxAddInheritance(Arbre))
 
 
@@ -55,8 +55,14 @@ plotcp(Arbre_rpart)
 plotcp(Arbre_party)
 plotcp(rxAddInheritance(Arbre))
 
-# Rpart 
-
-# Party
-
-# rxDtree
+######### Rpart 
+prediction_rpart <- predict(Arbre_rpart, type = "class")
+tb_rpart <- table(prediction_rpart,trainData$PLAN_CIBLE_CATEGO)
+erreur_rpart <- 1-sum(diag(tb_rpart))/sum(tb_rpart)
+print(erreur_rpart)
+######### Party
+prediction_party <- predict(Arbre_party)
+tb_party <- table(prediction_party,trainData$PLAN_CIBLE_CATEGO)
+erreur_party <- 1-sum(diag(tb_party))/sum(tb_party)
+print(erreur_party)
+######### rxDtree
