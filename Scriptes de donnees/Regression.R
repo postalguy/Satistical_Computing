@@ -77,3 +77,14 @@ model_logi_rxGLM_Abo <- rxGlm(target_Abo, family = binomial(), data = Donnees_Pl
 model_logi_rxGLM_Illim <- rxGlm(target_Illim, family = binomial(), data = Donnees_Plus_Passe1 ,dropFirst = TRUE)
 
 
+##################### Scoring et evaluation 
+
+#  Avec rxLogit
+print(model_logi_rx_Abo)
+print(model_logi_rx_Illim)
+print(model_Logi_rx_Hani)
+
+# GLM 
+print(model_logi_GLM_Hani)
+print(model_logi_GLM_Abo )
+print(model_logi_GLM_Illim)
