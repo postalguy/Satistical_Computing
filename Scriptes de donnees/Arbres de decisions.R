@@ -38,7 +38,7 @@ fancyRpartPlot(Arbre_rpart)
 
 ###########################################################################################
 # 2 - modele : party  
-  Arbre_party <- ctree(target,trainData, controls = ctree_control(maxdepth = 10,))
+  Arbre_party <- ctree(target,trainData, controls = ctree_control(maxdepth = 10))
 plot(Arbre_party, type="simple")
 
 ###########################################################################################
@@ -57,8 +57,9 @@ plotcp(rxAddInheritance(Arbre))
 
 ######### Rpart 
 prediction_rpart <- predict(Arbre_rpart, type = "class")
-tb_rpart <- table(prediction_rpart,trainData$PLAN_CIBLE_CATEGO)
+tb_rpart <- table(trainData$PLAN_CIBLE_CATEGO,prediction_rpart)
 erreur_rpart <- 1-sum(diag(tb_rpart))/sum(tb_rpart)
+
 print(erreur_rpart)
 ######### Party
 prediction_party <- predict(Arbre_party)
