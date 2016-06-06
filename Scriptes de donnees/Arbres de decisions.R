@@ -33,7 +33,7 @@ target <- PLAN_CIBLE_CATEGO ~ ANCIENETE + MMPR + AVG_OB_INT + AVG_OB_BASE + AVG_
 
 ###########################################################################################
 # 1 - modèle 1 : Rpart 
-Arbre_rpart <- rpart(target, data=trainData,method = "class", control = rpart.control(maxdepth = 20,cp = 0.005),parms = list(split = 'information'))
+Arbre_rpart <- rpart(target, data=trainData,method = "class", control = rpart.control(maxdepth = 20,cp = 0.0001),parms = list(split = 'information'))
 fancyRpartPlot(Arbre_rpart)
 
 ###########################################################################################
