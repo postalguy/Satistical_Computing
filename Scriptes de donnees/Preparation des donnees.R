@@ -57,7 +57,6 @@ data_model <- function(dataname){
   # Categoriser les plans 
   hani<- c("417","418","408","517")
   Illimite <- c("462","464","463","465","520","518","457","458","459")
-  Forfait_H <- c("454","379")
   Meditel_Abon <- c("359","421","425","420","360","385","361","423","362","387","365")
   PLAN_CIBLE_CATEGO <- ifelse(PLAN_CIBLE %in% hani , "Pack Hany", ifelse(PLAN_CIBLE %in% Illimite, "Pack Illimite",
                                                                          ifelse( PLAN_CIBLE %in% Forfait_H, "delete", ifelse(PLAN_CIBLE %in% Meditel_Abon, "Meditel Abonnement", "delete"))))
@@ -88,13 +87,17 @@ data_model <- function(dataname){
 
 #### UTILS 
 
-### Fonction removeNA() elimine les NA du datamart calculé 
+### Fonction removeNA() elimine les NA MMPR du datamart calculÃ© 
 removeNA <- function(dataname){
   return((dataname[!is.na(dataname$MMPR),]))
 }
 
 getNA <- function(dataname){
   return((dataname[is.na(dataname$MMPR),]))
+}
+
+Completevars <- function(dataname) {
+  return(dataname[complete.cases(dataname),])
 }
 
 

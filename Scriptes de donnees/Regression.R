@@ -16,12 +16,6 @@
 
 
 
-
-
-
-
-
-
 #############################################################################################"
 #regression binomiale de chaque categorie : ONE VS ALL RULE
  ## Pour Hani : la variable binaire Will_Hani si 1 la ligne a migre vers hani 
