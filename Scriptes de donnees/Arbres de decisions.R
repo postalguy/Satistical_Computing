@@ -20,7 +20,7 @@ library(party)
 
 
 ###########################################################################################
-#split data 
+#split data into stratified splits
 set.seed(1)
 Donnees_Stra<- stratified(Donnees_Plus_Passe1, c("PLAN_CIBLE_CATEGO"),2000)
 ind <- sample(2, nrow(Donnees_Stra), replace=TRUE, prob=c(0.7, 0.3))
